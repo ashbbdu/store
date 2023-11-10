@@ -1,17 +1,12 @@
-import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import AuthLayout from './layout/AuthLayout'
+import Routing from './routes/Routes'
+
+
 
 function App() {
 
   return (
-       <>
-      <Routes>
-          <Route path='/' element={<AuthLayout />} />
-          <Route path='/signup' element={<AuthLayout />} />
-          <Route path='/verify-account' element={<AuthLayout />} />
-      </Routes>
-       </>
+    <Routing />
   )
 }
 

@@ -1,20 +1,23 @@
 import { useFormik } from "formik";
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { loginIntialValues } from "../utils/initialValues";
-import { SignupSchema } from "../validationSchema";
+import { validationSchema } from "../validationSchema";
+
 
 const Login = () => {
+    const navigate = useNavigate();
   const formik = useFormik({
     initialValues: loginIntialValues,
-    validationSchema: SignupSchema,
+    validationSchema: validationSchema,
     enableReinitialize: true,
     onSubmit: (values) => {
       console.log(values, "value");
     },
   });
+
 
   return (
     <>
@@ -40,7 +43,7 @@ const Login = () => {
               onChange={formik.handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
-            <div style={{ fontSize: 12, color: "red" }}>
+            <div className="text-red-500 text-xs">
               {formik.errors.email &&
                 formik.touched.email &&
                 formik.errors.email}
@@ -57,7 +60,7 @@ const Login = () => {
               onChange={formik.handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
-            <div style={{ fontSize: 12, color: "red" }}>
+           <div className="text-red-500 text-xs">
               {" "}
               {formik.errors.password &&
                 formik.touched.password &&
@@ -75,6 +78,7 @@ const Login = () => {
           <button
             type="submit"
             className="w-full px-4 py-2 bg-[#84d2e6] rounded-md my-4"
+            onClick={() =>  navigate("/dashboard")}
           >
             Login
           </button>
